@@ -16,10 +16,14 @@
 
 	function submit() {
 		auth
-			.signUp({
+			.register({
 				email,
 				password,
-				display_name: name
+				options: {
+					userData: {
+						display_name: name
+					}
+				}
 			})
 			.then(() => {
 				goto('/profile');

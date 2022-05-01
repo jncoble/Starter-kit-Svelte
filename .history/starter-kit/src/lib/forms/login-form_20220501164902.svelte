@@ -7,14 +7,9 @@
 	let email;
 	let password;
 
-	function prefill() {
-		email = 'coble.jesse@gmail.com';
-		password = '111111Jc!';
-	}
-
 	function submit() {
 		auth
-			.signIn({
+			.login({
 				email,
 				password
 			})
@@ -36,12 +31,6 @@
 	<div class="pt-2">
 		<button class="py-2 px-4 text-white bg-gray-700 rounded-md shadow-sm" type="submit">
 			Login
-		</button>
-		<button
-			class="py-2 px-4 text-white bg-gray-700 rounded-md shadow-sm"
-			type="button"
-			on:click={prefill}
-			>Prefill(testing)
 		</button>
 	</div>
 </form>

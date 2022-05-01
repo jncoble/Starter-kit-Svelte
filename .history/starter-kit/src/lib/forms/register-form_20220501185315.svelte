@@ -16,10 +16,14 @@
 
 	function submit() {
 		auth
-			.signUp({
+			.register({
 				email,
 				password,
-				display_name: name
+				options: {
+					userData: {
+						display_name: name
+					}
+				}
 			})
 			.then(() => {
 				goto('/profile');
@@ -34,9 +38,9 @@
 	<p class="text-red-400 py-2">{error.message}</p>
 {/if}
 <form class="space-y-2" on:submit|preventDefault={submit}>
-	<Input label="Name" type="text" bind:value={name} name="name" />
-	<Input label="Email" type="email" bind:value={email} name="email" />
-	<Input label="Password" type="password" bind:value={password} name="password" />
+	<Input label="Name" type="text" bind:value={name} />
+	<Input label="Email" type="email" bind:value={email} />
+	<Input label="Password" type="password" bind:value={password} />
 	<div class="pt-2">
 		<button class="py-2 px-4 text-white bg-gray-700 rounded-md shadow-sm" type="submit"
 			>Register

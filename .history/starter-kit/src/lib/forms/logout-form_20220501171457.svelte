@@ -3,7 +3,7 @@
 	import { auth } from '../../utils/nhost';
 
 	function submit() {
-		auth.signOut().then(() => {
+		auth.logout().then(() => {
 			goto('/');
 		});
 	}

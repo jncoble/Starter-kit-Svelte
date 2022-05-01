@@ -20,6 +20,7 @@
 				email,
 				password,
 				display_name: name
+				}
 			})
 			.then(() => {
 				goto('/profile');

@@ -19,7 +19,11 @@
 			.signUp({
 				email,
 				password,
-				display_name: name
+				options: {
+					userData: {
+						display_name: name
+					}
+				}
 			})
 			.then(() => {
 				goto('/profile');
