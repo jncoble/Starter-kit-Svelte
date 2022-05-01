@@ -1,5 +1,5 @@
 <script context="module">
-	export const prerender = false;
+	export const prerender = true;
 </script>
 
 <h1 class="text-xl font-bold">Welcome to SvelteKit and Nhost starter kit</h1>

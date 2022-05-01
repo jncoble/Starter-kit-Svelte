@@ -1,5 +1,6 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
+	"type": "module",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": false,
