@@ -28,23 +28,26 @@
 			});
 
 			if (error) {
-				displayError(error);
+				let err: ErrorResponse = parseError(error);
+				if (err.shoudDisplayAsFormError) {
+					errorField = err.message;
+				} else if (err) {
+					console.log(err);
+					alert(err.message);
+				}
 				return;
 			}
 
 			goto('/profile');
 		} catch (e) {
-			displayError(e);
-		}
-	}
-
-	function displayError(e: any): void {
-		let err: ErrorResponse = parseError(e);
-		if (err.shoudDisplayAsFormError) {
-			errorField = err.message;
-		} else if (err) {
-			console.log(err);
-			alert(err.message);
+			let err: ErrorResponse = parseError(e);
+			if (err.shoudDisplayAsFormError) {
+				errorField = err.message;
+			} else if (err) {
+				console.log(err);
+				alert(err.message);
+			}
+			return;
 		}
 	}
 </script>

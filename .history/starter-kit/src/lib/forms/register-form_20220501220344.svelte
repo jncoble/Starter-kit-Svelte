@@ -2,9 +2,10 @@
 	import { goto } from '$app/navigation';
 	import { auth } from '../../utils/nhost';
 	import Input from '$lib/elements/input.svelte';
-	import { parseError, includesAnyFieldNames } from '$lib/utility/utilityFunctions';
+	import { parseError } from '$lib/utility/utilityFunctions';
 	import type { ErrorResponse } from '$lib/utility/types';
 
+	let errorShow;
 	let errorField;
 	let name;
 	let email;
@@ -28,33 +29,39 @@
 			});
 
 			if (error) {
-				displayError(error);
+				let err: ErrorResponse = parseError(error);
+				if (err.shoudDisplayAsFormError) {
+					errorField = err.message;
+				} else if (err) {
+					console.log(err);
+					alert(err.message);
+				}
 				return;
 			}
 
 			goto('/profile');
 		} catch (e) {
-			displayError(e);
-		}
-	}
-
-	function displayError(e: any): void {
-		let err: ErrorResponse = parseError(e);
-		if (err.shoudDisplayAsFormError) {
-			errorField = err.message;
-		} else if (err) {
-			console.log(err);
-			alert(err.message);
+			let err: ErrorResponse = parseError(e);
+			if (err.shoudDisplayAsFormError) {
+				errorField = err.message;
+			} else if (err) {
+				console.log(err);
+				alert(err.message);
+			}
+			return;
 		}
 	}
 </script>
 
-{#if errorField && includesAnyFieldNames(['email', 'name', 'password'], errorField)}
+{#if errorField}
 	<p class="text-red-400 py-2">{errorField}</p>
 {/if}
 <form class="space-y-2" on:submit|preventDefault={submit}>
 	<Input required label="Name" type="text" bind:value={name} name="name" {errorField} />
 	<Input required label="Email" type="email" bind:value={email} name="email" {errorField} />
+	<!-- {#if errorShowEmailInUse}
+		<p class="text-red-400 py-2">{errorShowEmailInUse}</p>
+	{/if} -->
 	<Input
 		required
 		label="Password"

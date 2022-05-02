@@ -5,7 +5,13 @@
 	export let value = '';
 	export let placeholder = '';
 	export let errorField = '';
-	$: errorField = errorField.toLowerCase().includes(name.toLowerCase()) === true ? errorField : '';
+
+	// if () {
+	// 	console.log('name: ' + label);
+	// 	console.log('errorField: ' + errorField);
+	// 	errorField = '';
+	// }
+	$: errorField = errorField.toLowerCase().includes(label.toLowerCase()) === true ? errorField : '';
 	function handleInput(e) {
 		value = type.match(/^(number|range)$/) ? +e.target.value : e.target.value;
 	}
@@ -16,7 +22,6 @@
 	<div class="mt-1">
 		<input
 			class="block shadow-sm focus:ring-indigo-500 rounded-md w-full border-gray-300"
-			class:border-red-500={errorField !== ''}
 			{type}
 			{value}
 			{name}

@@ -38,7 +38,7 @@
 		}
 	}
 
-	function displayError(e: any): void {
+	function displayError(e: any) {
 		let err: ErrorResponse = parseError(e);
 		if (err.shoudDisplayAsFormError) {
 			errorField = err.message;
