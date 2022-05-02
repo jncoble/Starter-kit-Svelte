@@ -16,7 +16,6 @@
 	<div class="mt-1">
 		<input
 			class="block shadow-sm focus:ring-indigo-500 rounded-md w-full border-gray-300"
-			class:border-red-500={errorField !== ''}
 			{type}
 			{value}
 			{name}
