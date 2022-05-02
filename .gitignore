@@ -2,3 +2,8 @@
 web/node_modules
 node_modules
 functions/node_modules
+/.history
+.env
+.env.development
+/.env
+/.env.development

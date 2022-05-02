@@ -1,7 +1,7 @@
 import { NhostClient } from '@nhost/nhost-js';
 
 const nhost = new NhostClient({
-	backendUrl: 'https://onsqigzibsqyyjjlbvol.nhost.run' // replace this with the backend URL of your app
+	backendUrl: import.meta.env.VITE_GRAPHQL_BACKEND // replace this with the backend URL of your app
 });
 
 console.log(nhost.graphql.getUrl());
